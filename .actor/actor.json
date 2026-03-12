@@ -1,0 +1,12 @@
+{
+  "actorSpecification": 1,
+  "name": "email-validator-api",
+  "title": "Email Validator API - Verify, Disposable Check, MX Lookup",
+  "description": "Validate emails instantly. Check MX records, detect disposable/temp emails, verify SMTP, identify free providers and role-based addresses. Fast API.",
+  "version": "1.0",
+  "buildTag": "latest",
+  "categories": ["DEVELOPER_TOOLS", "LEAD_GENERATION"],
+  "input": "./input_schema.json",
+  "dockerfile": "./Dockerfile",
+  "readme": "../README.md"
+}

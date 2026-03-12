@@ -1,0 +1,28 @@
+{
+  "title": "Email Validator API",
+  "description": "Validate email addresses with MX verification, SMTP checks, and disposable email detection. Use Standby mode for real-time API access.",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "email": {
+      "title": "Email Address",
+      "type": "string",
+      "description": "Email address to validate",
+      "editor": "textfield"
+    },
+    "emails": {
+      "title": "Email List (Bulk)",
+      "type": "array",
+      "description": "Array of email addresses for bulk validation (max 50)",
+      "editor": "json"
+    },
+    "mode": {
+      "title": "Mode",
+      "type": "string",
+      "description": "Validation mode: 'validate' for full check, 'disposable' for disposable-only check",
+      "default": "validate",
+      "enum": ["validate", "disposable", "bulk"],
+      "editor": "select"
+    }
+  }
+}

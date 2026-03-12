@@ -1,0 +1,16 @@
+{
+  "name": "email-validator-api",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Email Validator API with MX verification, SMTP checks, disposable email detection",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "node src/main.js"
+  },
+  "author": "George The Developer",
+  "license": "ISC",
+  "engines": { "node": ">=18.0.0" },
+  "dependencies": {
+    "apify": "^3.2.6"
+  }
+}

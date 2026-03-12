@@ -1,0 +1,124 @@
+{
+    "name": "apify",
+    "version": "3.7.0",
+    "description": "The scalable web crawling and scraping library for JavaScript/Node.js. Enables development of data extraction and web automation jobs (not only) with headless Chrome and Puppeteer.",
+    "engines": {
+        "node": ">=16.0.0"
+    },
+    "main": "./dist/index.js",
+    "module": "./dist/index.mjs",
+    "types": "./dist/index.d.ts",
+    "exports": {
+        ".": {
+            "import": "./dist/index.mjs",
+            "require": "./dist/index.js",
+            "types": "./dist/index.d.ts"
+        },
+        "./package.json": "./package.json"
+    },
+    "keywords": [
+        "apify",
+        "headless",
+        "chrome",
+        "puppeteer",
+        "crawler",
+        "scraper"
+    ],
+    "author": {
+        "name": "Apify",
+        "email": "support@apify.com",
+        "url": "https://apify.com"
+    },
+    "contributors": [
+        "Jan Curn <jan@apify.com>",
+        "Marek Trunkat <marek@apify.com>",
+        "Ondra Urban <ondra@apify.com>"
+    ],
+    "license": "Apache-2.0",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/apify/apify-sdk-js"
+    },
+    "bugs": {
+        "url": "https://github.com/apify/apify-sdk-js/issues"
+    },
+    "homepage": "https://docs.apify.com/sdk/js",
+    "files": [
+        "dist",
+        "!dist/tsconfig.build.tsbuildinfo"
+    ],
+    "scripts": {
+        "prepare": "husky",
+        "clean": "rimraf ./dist",
+        "compile": "tsc -p tsconfig.build.json && gen-esm-wrapper ./dist/index.js ./dist/index.mjs",
+        "fixApifyExport": "node ./scripts/temp_fix_apify_exports.mjs",
+        "build": "npm run clean && npm run compile && npm run fixApifyExport",
+        "prepublishOnly": "npm run build",
+        "ci:build": "npm run build",
+        "test": "vitest run --silent",
+        "test:e2e": "npm run test:e2e:sdk",
+        "test:e2e:sdk": "npm run test:e2e:sdk:tarball && node test/e2e/runSdkTests.mjs",
+        "test:e2e:sdk:tarball": "npm run build && mv $(npm pack | tail -n 1) test/e2e/apify.tgz",
+        "tsc-check-tests": "tsc --noEmit --project test/tsconfig.json",
+        "coverage": "vitest --coverage",
+        "lint": "eslint",
+        "lint:fix": "eslint --fix",
+        "format": "prettier --write .",
+        "format:check": "prettier --check ."
+    },
+    "lint-staged": {
+        "src/**/*": [
+            "eslint --fix"
+        ],
+        "test/**/*": [
+            "eslint --fix"
+        ],
+        "*": "prettier --write --ignore-unknown"
+    },
+    "dependencies": {
+        "@apify/consts": "^2.51.0",
+        "@apify/input_secrets": "^1.2.0",
+        "@apify/log": "^2.4.3",
+        "@apify/timeout": "^0.3.0",
+        "@apify/utilities": "^2.13.0",
+        "@crawlee/core": "^3.14.1",
+        "@crawlee/types": "^3.14.1",
+        "@crawlee/utils": "^3.14.1",
+        "apify-client": "^2.17.0",
+        "fs-extra": "^11.2.0",
+        "ow": "^0.28.2",
+        "semver": "^7.5.4",
+        "tslib": "^2.6.2",
+        "ws": "^8.18.0"
+    },
+    "devDependencies": {
+        "@apify/eslint-config": "^1.0.0",
+        "@apify/tsconfig": "^0.1.0",
+        "@commitlint/config-conventional": "^20.0.0",
+        "@playwright/browser-chromium": "^1.46.0",
+        "@types/content-type": "^1.1.8",
+        "@types/fs-extra": "^11.0.4",
+        "@types/node": "^24.0.0",
+        "@types/semver": "^7.5.8",
+        "@types/tough-cookie": "^4.0.5",
+        "@types/ws": "^8.5.12",
+        "commitlint": "^20.0.0",
+        "crawlee": "^3.13.5",
+        "eslint": "^9.23.0",
+        "eslint-config-prettier": "^10.1.1",
+        "gen-esm-wrapper": "^1.1.3",
+        "globby": "^16.0.0",
+        "husky": "^9.1.7",
+        "lint-staged": "^16.0.0",
+        "playwright": "^1.46.0",
+        "prettier": "3.8.1",
+        "puppeteer": "^24.0.0",
+        "rimraf": "^6.0.1",
+        "tsx": "^4.16.5",
+        "typescript": "~5.9.0",
+        "typescript-eslint": "^8.28.0",
+        "vite-tsconfig-paths": "^6.0.0",
+        "vitest": "^3.0.0"
+    },
+    "packageManager": "npm@10.9.2"
+}
